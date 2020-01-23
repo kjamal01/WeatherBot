@@ -17,7 +17,10 @@ weatherForm.addEventListener('submit', (e) => {
     messageOne.textContent = "loading..."
     messageTwo.textContent = ''
 
-    fetch('http://localhost:3000/weather?address=' + location).then((response) => {
+    // don't fetch the local host 'http://localhost:3000/weather?address=' that we can use on our machine
+    // to ensure that it uses heroku when available, and localhost when heroku isnt 
+
+    fetch('/weather?address=' + location).then((response) => {
         response.json().then((data) => {
             if (data.error) {
                 messageOne.textContent = data.error
